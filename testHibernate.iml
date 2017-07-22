@@ -18,6 +18,7 @@
     <facet type="hibernate" name="Hibernate">
       <configuration>
         <datasource-map>
+          <unit-entry name="Hibernate:hibernate.cfg.xml" />
           <unit-entry name="Hibernate:hibernate.conf.xml" value="41ebe4fd-df21-442e-ae52-3f684e001f6b" />
         </datasource-map>
         <naming-strategy-map />
@@ -33,6 +34,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />

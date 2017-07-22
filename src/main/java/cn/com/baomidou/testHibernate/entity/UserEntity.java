@@ -1,4 +1,4 @@
-package cn.combaomidou.testHibernate.entity;
+package cn.com.baomidou.testHibernate.entity;
 
 import javax.persistence.*;
 
@@ -8,18 +8,28 @@ import javax.persistence.*;
 @Entity
 @Table(name = "tb_user", schema = "hibernate")
 public class UserEntity {
-    private int uid;
+//    private int uid;
+    private String uid;
     private String username;
     private String adress;
     private String password;
 
-    @Id
+   /* @Id
     @Column(name = "uid", nullable = false)
     public int getUid() {
         return uid;
     }
 
     public void setUid(int uid) {
+        this.uid = uid;
+    }*/
+    @Id
+    @Column(name = "uid",nullable = false)
+    public String getUid() {
+        return uid;
+    }
+
+    public void setUid(String uid) {
         this.uid = uid;
     }
 
@@ -54,26 +64,12 @@ public class UserEntity {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        UserEntity that = (UserEntity) o;
-
-        if (uid != that.uid) return false;
-        if (username != null ? !username.equals(that.username) : that.username != null) return false;
-        if (adress != null ? !adress.equals(that.adress) : that.adress != null) return false;
-        if (password != null ? !password.equals(that.password) : that.password != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = uid;
-        result = 31 * result + (username != null ? username.hashCode() : 0);
-        result = 31 * result + (adress != null ? adress.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        return result;
+    public String toString() {
+        return "UserEntity{" +
+                "uid='" + uid + '\'' +
+                ", username='" + username + '\'' +
+                ", adress='" + adress + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

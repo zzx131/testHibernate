@@ -15,7 +15,7 @@
         <property name="format_sql">true</property>
         <!-- 指定自动生成数据表的策略 -->
         <property name="hbm2ddl.auto">update</property>
-        <mapping resource="cn/combaomidou/testHibernate/entity/UserEntity.hbm.xml"/>
-        <mapping class="cn.combaomidou.testHibernate.entity.UserEntity"/>
+        <mapping resource="cn/com/baomidou/testHibernate/entity/UserEntity.hbm.xml"/>
+        <mapping class="cn.com.baomidou.testHibernate.entity.UserEntity"/>
     </session-factory>
 </hibernate-configuration>
