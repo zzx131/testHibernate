@@ -20,5 +20,7 @@
         <mapping class="cn.com.baomidou.testHibernate.entity.UserEntity"/>
         <mapping resource="cn/com/baomidou/testHibernate/entity/Customer.hbm.xml"/>
         <mapping class="cn.com.baomidou.testHibernate.entity.Customer"/>
+        <mapping resource="cn/com/baomidou/testHibernate/entity/Order.hbm.xml"/>
+        <mapping class="cn.com.baomidou.testHibernate.entity.Order"/>
     </session-factory>
 </hibernate-configuration>

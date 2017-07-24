@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="cn.com.baomidou.testHibernate.entity.Order" table="tb_order" schema="hibernate">
+        <id name="id" column="OID">
+            <generator class="native"/>
+        </id>
+        <property name="orderNumber">
+            <column name="ORDERNUMBER" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="price">
+            <column name="PRICE" sql-type="double(10,3)" not-null="true"/>
+        </property>
+        <many-to-one name="customer" column="CUSTOMER_ID"
+                     class="cn.com.baomidou.testHibernate.entity.Customer"
+                     not-null="true" cascade="save-update"
+        />
+    </class>
+</hibernate-mapping>

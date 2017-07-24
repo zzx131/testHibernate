@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="cn.com.baomidou.testHibernate.entity.Customer" table="tb_customer" schema="hibernate">
+    <class name="cn.com.baomidou.testHibernate.entity.Customer" dynamic-insert="true" dynamic-update="true" table="tb_customer" schema="hibernate">
         <id name="id" column="ID" type="long">
             <generator class="native"></generator>
         </id>
@@ -19,5 +19,14 @@
         <property name="image" column="IMAGE" type="imm_binary"/>
         <property name="married" column="MARRIED" type="java.lang.Boolean"/>
         <property name="sex" column="SEX" type="java.lang.Character"/>
+
+        <set name="orders" cascade="save-update">
+            <key column="CUSTOMER_ID"/>
+            <one-to-many class="cn.com.baomidou.testHibernate.entity.Order" />
+        </set>
+
+        <property name="totalPrice"
+            formula="(select sum(o.price) from tb_order o where o.CUSTOMER_ID=ID)"/>
+
     </class>
 </hibernate-mapping>

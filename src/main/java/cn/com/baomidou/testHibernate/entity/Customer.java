@@ -1,16 +1,15 @@
 package cn.com.baomidou.testHibernate.entity;
 
 
-import java.sql.Timestamp;
-import java.util.Arrays;
-import java.util.Date;
+import java.util.*;
 
 /**
  * Created by zzx on 2017/7/23.
  */
 public class Customer {
     private Long id;
-    private String name;
+    private String firstname;
+    private String lastname;
     private String email;
     private String password;
     private String phone;
@@ -21,8 +20,70 @@ public class Customer {
     private byte[] image;
     private Date brithday;
     private Date registeredTime;
+    private Set<Order> orders =new HashSet<Order>();
+    private Double avgPrice;
+    private Double totalPrice;
 
     public Customer() {
+    }
+    public Double getTotalPrice() {
+
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
+
+    /**
+     * 订单的平均价格
+     */
+    private void calculatePrice() {
+        double avgPrice = 0.0;
+        double totalPrice = 0.0;
+        int count = 0;
+        if (getOrders() != null) {
+            Iterator iterator = getOrders().iterator();
+            while (iterator.hasNext()) {
+                double orderPrice = ((Order) iterator.next()).getPrice();
+                totalPrice += orderPrice;
+                count++;
+            }
+            avgPrice = totalPrice / count;
+            setAvgPrice(new Double(avgPrice));
+        }
+    }
+
+    public Double getAvgPrice() {
+        return avgPrice;
+    }
+
+    private void setAvgPrice(Double avgPrice) {
+        this.avgPrice = avgPrice;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
     public Long getId() {
@@ -34,11 +95,13 @@ public class Customer {
     }
 
     public String getName() {
-        return name;
+        return firstname + " " + lastname;
     }
 
     public void setName(String name) {
-        this.name = name;
+        StringTokenizer stringTokenizer = new StringTokenizer(name);
+        firstname = stringTokenizer.nextToken();
+        lastname = stringTokenizer.nextToken();
     }
 
     public String getEmail() {
@@ -86,6 +149,9 @@ public class Customer {
     }
 
     public void setSex(char sex) {
+        if (sex != 'F' && sex != 'M') {
+            throw new IllegalArgumentException("Invalid Sex");
+        }
         this.sex = sex;
     }
 
@@ -125,7 +191,7 @@ public class Customer {
     public String toString() {
         return "Customer{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", name='" + firstname + lastname + '\'' +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", phone=" + phone +

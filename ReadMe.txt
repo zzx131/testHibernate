@@ -50,4 +50,11 @@ Hibernate的api使用
 
 Hibernate中的数据库中TimeStamp，设定默认值为CURRENT_TIMESTAMP不起作用？
 原因是，在save的过程中添加了所有的字段，这时的时间默认是为null，假如进行手动设置为NULL不会插入当前时间，
-解决办法是，设置当前时间
+解决办法是，设置当前时间，第二是设置dynamic-insert="true" dynamic-update="true"，动态生成sql语句，只
+包含类中有的字段。
+
+字符串分割类
+StringTokenizer类
+
+遇到一个问题，是当添加user对象的时候，设置他的订单集合，无法添加成功，提示说游离的类，无法进行添加
+解决方法：cascade="save-update"保持同步。
