@@ -47,3 +47,7 @@ Hibernate的api使用
     2),创建对象Criteria对象
 3，SQLQuery对象
     1,使用hibernate时候，调用底层sql实现。
+
+Hibernate中的数据库中TimeStamp，设定默认值为CURRENT_TIMESTAMP不起作用？
+原因是，在save的过程中添加了所有的字段，这时的时间默认是为null，假如进行手动设置为NULL不会插入当前时间，
+解决办法是，设置当前时间
