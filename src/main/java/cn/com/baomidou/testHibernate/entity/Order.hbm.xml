@@ -4,7 +4,7 @@
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="cn.com.baomidou.testHibernate.entity.Order" table="tb_order" schema="hibernate">
+    <class name="cn.com.baomidou.testHibernate.entity.Order" dynamic-update="true" dynamic-insert="true" table="tb_order" schema="hibernate">
         <id name="id" column="OID">
             <generator class="native"/>
         </id>
@@ -14,9 +14,12 @@
         <property name="price">
             <column name="PRICE" sql-type="double(10,3)" not-null="true"/>
         </property>
-        <many-to-one name="customer" column="CUSTOMER_ID"
+        <many-to-one name="customer"
+                     column="CUSTOMER_ID"
                      class="cn.com.baomidou.testHibernate.entity.Customer"
-                     not-null="true" cascade="save-update"
+                     not-null="false"
+                     cascade="save-update"
+                     lazy="false"
         />
     </class>
 </hibernate-mapping>

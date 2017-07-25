@@ -20,7 +20,7 @@
         <property name="married" column="MARRIED" type="java.lang.Boolean"/>
         <property name="sex" column="SEX" type="java.lang.Character"/>
 
-        <set name="orders" cascade="save-update">
+        <set name="orders" cascade="save-update" inverse="true" lazy="false">
             <key column="CUSTOMER_ID"/>
             <one-to-many class="cn.com.baomidou.testHibernate.entity.Order" />
         </set>
